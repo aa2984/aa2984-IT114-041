@@ -25,17 +25,35 @@ public class Scenario2 extends BaseClass {
         double total = 0;
         // Start Solution Edits
         // Solve Challenge 1 here
+
+        //aa2984 : 2026-June-13
+        //Summary: Purpose of the code is to add up all numbers in array
+        //First step is to go through every double value in array then append to 'total'
+        //Must have format the final total so it ALWAYS shows as 2 decimals
+        
+       
+
+        //Each number stored in value1.
+        for (double value1 : arr) {
+            //Loops through every number in the array.
+            total += value1;
+            //Adds current number to total.
+        }
+            //Total continously gets updated until it becomes the final sum of the array
+
+        
        
       
         // Solve Challenge 2 here
-        Object modifiedTotal = "?";
+        //Format total to put it to 2 decimals
+        Object modifiedTotal = String.format("%.2f", total);
         
         // End Solution Edits
         printScenario2Output(total, modifiedTotal);
     }
 
     public static void main(String[] args) {
-        final String ucid = "mt85"; // <-- change to your UCID
+        final String ucid = "aa2984"; // <-- change to your UCID
         // no edits below this line
         printHeader(ucid, 2);
         sumValues(array1, 1);
