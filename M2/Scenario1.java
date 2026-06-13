@@ -20,13 +20,36 @@ public class Scenario1 extends BaseClass {
         // Step 3: Add code to solve the problem (add/commit as needed)
         // Start Solution Edits
 
+        //aa2984: 2026-June-13
+
+        //Summary: Solved by properly iterating through the data with said loop to filter out odd numbers
+        //Objective is to print values only in which are odd
+        //Moreso using a boolean
+
+        boolean isFirstItem1 = true;
+
+        for (int value1 : arr) {
+            if (value1 % 2 != 0) {
+                if (!isFirstItem1) {
+                    System.out.print(", ");
+                    //Print only odd results
+                }
+                System.out.print(value1);
+                isFirstItem1 = false;
+
+            }
+
+        }
+
+    
+
 
         // End Solution Edits
         System.out.println("");
         System.out.println("__");
     }
     public static void main(String[] args) {
-        final String ucid = "mt85"; // <-- change to your UCID
+        final String ucid = "aa2984"; // <-- change to your UCID
         // no edits below this line
         printHeader(ucid, 1);
         printOdds(array1,1);
