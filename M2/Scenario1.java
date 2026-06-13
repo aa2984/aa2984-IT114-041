@@ -27,8 +27,10 @@ public class Scenario1 extends BaseClass {
         //Moreso using a boolean
 
         boolean isFirstItem1 = true;
-
+        //Checks if printing first odd number
+        
         for (int value1 : arr) {
+            //Essential part of the code that loops through every number in array
             if (value1 % 2 != 0) {
                 if (!isFirstItem1) {
                     System.out.print(", ");
