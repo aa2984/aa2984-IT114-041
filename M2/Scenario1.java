@@ -24,7 +24,7 @@ public class Scenario1 extends BaseClass {
 
         //Summary: Solved by properly iterating through the data with said loop to filter out odd numbers
         //Objective is to print values only in which are odd
-        //Moreso using a boolean
+        //Moreso using a boolean by checking if divisible by 2.
 
         boolean isFirstItem1 = true;
         //Checks if printing first odd number
@@ -59,3 +59,6 @@ public class Scenario1 extends BaseClass {
         printOdds(array3,3);
         printOdds(array4,4);
         printFooter(ucid, 1);
+    }
+}
+        
