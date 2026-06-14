@@ -29,7 +29,7 @@ public class Scenario2 extends BaseClass {
         //aa2984 : 2026-June-13
         //Summary: Purpose of the code is to add up all numbers in array
         //First step is to go through every double value in array then append to 'total'
-        //Must have format the final total so it ALWAYS shows as 2 decimals
+        //Second part is to format the final total so it ALWAYS shows as 2 decimals
         
        
 

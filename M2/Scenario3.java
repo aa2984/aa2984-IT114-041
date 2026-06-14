@@ -24,9 +24,10 @@ public class Scenario3 extends BaseClass {
 
       //aa2984: 2026-June-13
       //Summary: Solved the problem by looping through each value in array
-      //Value checked by the original types
-      //Objective resovled in which numbers convered to positive ,while keeping each value in its original data type
+      //Checked the value by comparing its data type with stored data types
+      //Numbers converted to positive, while keeping each value in its original data form
 
+        
       //For loop iterates through each value in the array
       for (int index1 = 0; index1 < arr.length; index1++) {
         //Object stores the current value

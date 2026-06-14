@@ -35,7 +35,11 @@ public class Scenario4 extends BaseClass {
         for(int i = 0; i <arr.length; i++){
             // Start Solution Edits
             //aa2984: 2026-June-13
-            //Summary: Keeps strings clean, fixes capitalization for words, and gets the middle 3 characters
+            //Summary: Solved the problem by looping through each value in the array and using regular expressions and string replacement to keep strings clean
+            //Split up phrases into words in which using a secondary loop for capitilization for Title case and right after making their first letters upper case
+            //Using calculations for the middle 3 characters by finding center of string and using string length/2 and taking one character to its left and right 
+
+            
           String rawInput1 = arr[i];
 
           //First check if string exists using if statement
