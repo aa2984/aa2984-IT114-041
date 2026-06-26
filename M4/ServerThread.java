@@ -25,6 +25,11 @@ public class ServerThread extends Thread {
         System.out.println(String.format("Thread[%s]: %s", this.getClientId(), message));
     }
 
+
+    //aa2984: 2026-June-26
+    //Summary: Added flip case to the switch to catch the flip command
+    //Routes the request to the .handleCoinFlip in which takes the thread pass as sender
+    //Follows routing pattern as the same as disconnect, users, and reverse cases
     public boolean isRunning() {
         return isRunning;
     }
@@ -152,6 +157,9 @@ public class ServerThread extends Thread {
                 return true;
             case "users":
                 server.handleGetUserList(this);
+                return true;
+            case "flip": //connect the routing to send flip request to server handle
+                server.handleCoinFlip(this);
                 return true;
             case "reverse":
                 // join remaining segments back into the text to reverse

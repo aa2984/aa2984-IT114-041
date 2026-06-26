@@ -32,6 +32,11 @@ public class Server {
         }
     }
 
+    //aa2984: 2026-June-26
+    //Summary: Created handleCoinFlip function to generate random heads or tails Result
+    //Used random function to pick the outcome and format the broadcast message
+    //Finally broadcast Result from server to all connected clients using existing broadcast method
+
     /**
      * Callback from ServerThread once streams are open and it is ready to send/receive.
      * Registers the client and announces their arrival.
@@ -86,11 +91,20 @@ public class Server {
         serverThread.sendToClient(sb.toString().trim());
     }
 
+
     /** Reverses the text and broadcasts the result. */
     protected synchronized void handleReverseText(ServerThread sender, String text) {
         StringBuilder sb = new StringBuilder(text);
         sb.reverse();
         broadcast(sender, sb.toString());
+    }
+
+        // will randomly pick head or tails, then properly format message, and send the Result
+    protected synchronized void handleCoinFlip(ServerThread sender) {
+        String flipResult1 = Math.random() < 0.5 ? "Heads" : "Tails";
+
+        String flipMessage1 = String.format("User[%s] flipped a coin and got %s", sender.getClientId(), flipResult1);
+        broadcast(null, flipMessage1);
     }
 
     /** Broadcasts a chat message from the sender to all clients. */

@@ -23,6 +23,10 @@ public class Client {
     final Pattern localhostPattern = Pattern.compile("/connect\\s+(localhost:\\d{3,5})");
     private volatile boolean isRunning = true;
 
+    //aa2984: 2026-June-26
+    //Summary: Created a function to generate a random heads or tails Result
+    // Used Math.random to pick the outcome and also format said message properly
+    //Display Result from server to all connected clients using existing broadcast()
     /**
      * Recognized client-side commands.
      */
@@ -31,7 +35,8 @@ public class Client {
         DISCONNECT("/disconnect"),
         QUIT("/quit"),
         USERS("/users"),
-        REVERSE("/reverse");
+        REVERSE("/reverse"),
+        FLIP("/flip");
 
         private final String trigger;
 
@@ -121,6 +126,9 @@ public class Client {
                 return true;
             case USERS:
                 sendToServer(String.join(",", Constants.COMMAND_TRIGGER, "users"));
+                return true;
+            case FLIP: //create new case and send flip command
+                sendToServer(String.join(",", Constants.COMMAND_TRIGGER, "flip"));
                 return true;
             case REVERSE:
                 // strip "/reverse" prefix and send remainder as the text to reverse
