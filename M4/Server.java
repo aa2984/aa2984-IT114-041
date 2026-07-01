@@ -37,6 +37,10 @@ public class Server {
     //Used random function to pick the outcome and format the broadcast message
     //Finally broadcast Result from server to all connected clients using existing broadcast method
 
+    //aa2984: 2026-July-1
+    //Summary: Created handlePrivateMessage to send message to only sender + target
+    //Looked up target by id in connectedClients map and sent formatted PM to both
+    //Then if target not found, sender notified that user is not existing.
     /**
      * Callback from ServerThread once streams are open and it is ready to send/receive.
      * Registers the client and announces their arrival.
@@ -99,6 +103,38 @@ public class Server {
         broadcast(sender, sb.toString());
     }
 
+    //aa2984: 2026-July-1
+    //Summary: Created handleShuffleMessage to randomize characters 
+    //Converted message to char array, and shuffled
+    //The broadcast then shuffled result to said clients formatted properly
+    protected synchronized void handleShuffleMessage(ServerThread sender, String message) {
+        //split message up into characters
+        java.util.List<Character> characters1 = new java.util.ArrayList<>();
+        for (char character1 : message.toCharArray()) {
+            characters1.add(character1);
+        }
+        java.util.Collections.shuffle(characters1);
+        StringBuilder shuffledResult1 = new StringBuilder();
+        for (char character1 : characters1) {
+            shuffledResult1.append(character1);
+        }
+
+        String shuffleMessage1 = String.format("Shuffled from User[%s]: %s", sender.getClientId(), shuffledResult1.toString());
+        broadcast(null, shuffleMessage1);
+    }
+
+    protected synchronized void handlePrivateMessage(ServerThread sender, long targetId, String message) {
+        ServerThread targetClient1 = connectedClients.get(targetId);
+        String pmFormatted1 = String.format("PM from User[%s]: %s", sender.getClientId(), message);
+        if (targetClient1 == null) {
+            sender.sendToClient("Server: User[" + targetId + "] not found");
+            return;
+        }
+        //Last step to fulfill was to send to both sender and reciever 
+        sender.sendToClient("Server: " + pmFormatted1);
+        targetClient1.sendToClient("Server: " + pmFormatted1);
+        }
+    
         // will randomly pick head or tails, then properly format message, and send the Result
     protected synchronized void handleCoinFlip(ServerThread sender) {
         String flipResult1 = Math.random() < 0.5 ? "Heads" : "Tails";

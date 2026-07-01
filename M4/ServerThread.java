@@ -158,6 +158,24 @@ public class ServerThread extends Thread {
             case "users":
                 server.handleGetUserList(this);
                 return true;
+            //Making sure meeting the requirements of target id, message , and command
+            case "shuffle":
+                String shuffleText1 = String.join(" ", Arrays.copyOfRange(commandData, 2 , commandData.length));
+                if (shuffleText1.isEmpty()) {
+                    sendToClient("Invalid format. Usage: /shuffle <message>");
+                    return true;
+                }
+                server.handleShuffleMessage(this,shuffleText1);
+                return true;
+            case "pm":
+                if (commandData.length <4) {
+                    sendToClient("Invalid format. Usage: /pm <target id> <message> ");
+                    return true;
+                }
+            long pmTargetId1 = Long.parseLong(commandData[2].trim());
+            String pmMessage1 = String.join(" ", Arrays.copyOfRange(commandData, 3, commandData.length));
+            server.handlePrivateMessage(this, pmTargetId1, pmMessage1);
+            return true;
             case "flip": //connect the routing to send flip request to server handle
                 server.handleCoinFlip(this);
                 return true;
@@ -168,7 +186,9 @@ public class ServerThread extends Thread {
                 return true;
             default:
                 return false;
+            
         }
+
     }
 
     private void cleanup() {

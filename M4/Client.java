@@ -36,7 +36,11 @@ public class Client {
         QUIT("/quit"),
         USERS("/users"),
         REVERSE("/reverse"),
-        FLIP("/flip");
+        FLIP("/flip"),
+        PM("/pm"),
+        SHUFFLE("/shuffle");
+
+    
 
         private final String trigger;
 
@@ -126,6 +130,27 @@ public class Client {
                 return true;
             case USERS:
                 sendToServer(String.join(",", Constants.COMMAND_TRIGGER, "users"));
+                return true;
+            case SHUFFLE:
+                //stripping shuffle prefix and grab message
+            String shuffleInput1 = text.replace("/shuffle", "").trim();
+            if (shuffleInput1.isEmpty()) {
+                System.out.println("Invalid format. Usage: /shuffle <message>");
+                return true;
+            }
+            sendToServer(String.join(",", Constants.COMMAND_TRIGGER, "shuffle", shuffleInput1));
+            return true;
+            case PM: 
+                //split off /pm to target id 
+                String pmInput1 = text.replace("/pm", "").trim();
+                String[] pmParts1 = pmInput1.split(" ", 2);
+                if (pmParts1.length < 2) {
+                    System.out.println("Invalid format. Usage: /pm <target id> <message>");
+                    return true;
+                
+                }
+                //Put together and fire out pm command to server
+                sendToServer(String.join(",", Constants.COMMAND_TRIGGER, "pm", pmParts1[0].trim(), pmParts1[1].trim()));
                 return true;
             case FLIP: //create new case and send flip command
                 sendToServer(String.join(",", Constants.COMMAND_TRIGGER, "flip"));
