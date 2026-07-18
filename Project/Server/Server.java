@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 
-import M4.ServerThread;
+
 import Project.Common.Move;
 import Project.Common.TextFX;
 import Project.Common.TextFX.Color;
@@ -250,6 +250,11 @@ public enum Server {
         clientToGameMap.remove(playerBId);
     }
 
+
+    //aa2984: 2026-July-18
+    //Summary: Client leaving mid game needs the opponent to be available
+    //cleanupGameforClient checks if disconnecting client was in a game
+    //removeGame wipes both tracking once a game
     
     private void cleanupGameForClient(long clientId) {
         Long gameId1 = clientToGameMap.get(clientId);
@@ -327,7 +332,7 @@ public enum Server {
     public static void main(String[] args) {
         System.out.println("Server Starting");
         Server server1 = Server.INSTANCE;
-        int port1 = 3000;
+        int port1 = 3009;
         try {
             port1 = Integer.parseInt(args[0]);
         } catch (Exception e) {

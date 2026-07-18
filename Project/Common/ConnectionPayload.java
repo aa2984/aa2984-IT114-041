@@ -1,6 +1,6 @@
 package Project.Common;
 
-public class ConnectionPayload {
+public class ConnectionPayload extends Payload {
     private String clientName;
 
     public String getClientName() {

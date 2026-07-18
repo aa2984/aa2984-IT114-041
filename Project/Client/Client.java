@@ -20,6 +20,13 @@ import Project.Common.TextFX;
 import Project.Common.TextFX.Color;
 import Project.Common.User;
 
+
+
+//aa2984: 2026-July-14
+//Summary: Added four new commands 
+//rps takes a target id, the move downloads either rock , paper, scissors
+//Accept and decline sends 'yes' or 'no' essentially
+
 public enum Client {
     INSTANCE;
 

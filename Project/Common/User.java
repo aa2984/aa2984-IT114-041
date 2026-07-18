@@ -28,10 +28,9 @@ public class User {
     
     }
 
-    public void setClientName() {
-        return clientName;
-    
-    }
+    public void setClientName(String username) {
+        this.clientName = username;
+}
 
     
 

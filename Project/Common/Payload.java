@@ -12,7 +12,7 @@ public class Payload implements Serializable {
 
 
     public PayloadType getPayloadType() {
-        return PayloadType;
+        return payloadType;
 }
 
     public void setPayloadType(PayloadType payloadType) {
